@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -29,16 +30,21 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	GamePanel() {
 		this.setPreferredSize(new Dimension(700, 500));
+		this.setLayout(null);
 		
 		sky = new JPanel();
-		sky.setPreferredSize(new Dimension(700, 300));
+		sky.setBounds(0, 0, 700, 300);
 		sky.setBackground(Color.BLUE);
 		
 		grass = new JPanel();
-		grass.setPreferredSize(new Dimension(700, 200));
+		grass.setBounds(0, 300, 700, 200);
 		grass.setBackground(Color.GREEN);
 		
-//		scoreLabel = new JLabel();
+		scoreLabel = new JLabel();
+		scoreLabel.setBounds(0, 0, 100, 50);
+		scoreLabel.setText("Score: " + score);
+		scoreLabel.setFont(new Font(null, Font.BOLD, 20));
+		scoreLabel.setForeground(Color.WHITE);
 		
 		duck = new ImageIcon("duck.png").getImage();
 		
@@ -46,6 +52,10 @@ public class GamePanel extends JPanel implements ActionListener {
 		
 		this.add(sky);
 		this.add(grass);
+		this.add(scoreLabel);
+		this.setComponentZOrder(scoreLabel, 1);
+		this.setComponentZOrder(sky, 2);
+		this.setComponentZOrder(grass, 2);
 		
 		timer = new Timer(10, this);
 		timer.start();

@@ -26,6 +26,7 @@ public class Game extends JFrame implements MouseListener {
 		Point point = e.getPoint();
 		if (panel.imageBounds.contains(point)) {
 			panel.score++;
+			panel.scoreLabel.setText("Score: " + panel.score);
 			System.out.println(panel.score);
 		}
 	}
